@@ -1,0 +1,329 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>The API Gateway to Kill all Monoliths</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<style>
+			.red {
+				color: red;
+			}
+
+			.blue {
+				color: #1b91ff;
+			}
+
+			.green {
+				color: #c1ff0b;
+			}
+
+			.orange {
+				color: orange;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background-image="images/mesh.jpg" data-background-repeat="repeat">
+					<h1 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">O <span class="blue">API Gateway</span> pra acabar com todos os  <span class="red">monolitos</span></h1>
+					<p style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+						<small>
+							<a href="http://mauricio.github.io/">Maurício Linhares</a> /
+							<a href="http://twitter.com/mauriciojr">@mauriciojr</a> /
+							<span style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Tech Lead na DigitalOcean e co-host do podcast <a href="http://hipsters.tech/">hipsters.tech</a> </span>
+						</small>
+					</p>
+				</section>
+
+				<section>
+					<h1>Quando você começa a usar <span class="green">microserviços</span>...</h1>
+				</section>
+
+				<section>
+					<h5>... a coisa começa a ficar <span class="red">bagunçada</span></h5>
+					<p>
+						<img src="images/crowd.jpeg"/>
+					</p>
+				</section>
+
+				<section>
+					<h1>Equipes vão começar a fazer serviços cada vez <span class="blue">menores</span></h1>
+				</section>
+
+				<section>
+					<img src="images/thisisfine.jpg">
+				</section>
+
+				<section>
+					<h1>Mas os seus clientes não querem saber de <span class="red">microserviços</span></h1>
+				</section>
+
+				<section>
+					<h1>Eles querem uma API <span class="orange">unificada</span> e <span class="green">fácil de usar</span></h1>
+				</section>
+
+				<section>
+					<img src="images/problem.jpeg">
+				</section>
+
+				<section>
+					<h1>Pra clientes</h1>
+					<ul>
+						<li>Fonte <span class="orange">centralizada</span> de informações</li>
+						<li>Autenticação e autorização compartilhadas entre chamadas</li>
+						<li><span class="blue">Tratamento</span> de erros comum</li>
+						<li>Formato e protocolos de comunicação compartilhados</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Mas <span class="orange">equipes</span> também querem <span class="blue">liberdade</span> pra desenvolver do seu próprio jeito</h1>
+				</section>
+
+				<section>
+					<h1>Pra equipes</h1>
+					<ul>
+						<li>Roteamento <span class="green">Self service</span></li>
+						<li>Controle total sobre seus deploys</li>
+						<li>Liberdade pra usar outros <span class="blue">modos de comunicação</span> quando necessário</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Temos um conflito aqui</h1>
+					<p>Um lado quer <span class="red">menos</span> mudança e o outro quer <span class="green">mais</span></p>
+				</section>
+
+				<section>
+					<h5>Precisamos de mais <span class="green">camadas!</span></h5>
+					<p>
+						<img src="images/layers.jpg">
+					</p>
+				</section>
+
+				<section>
+					<h1>O API Gateway</h1>
+					<p>
+						<img src="images/apigateway.jpg">
+					</p>
+				</section>
+
+				<section>
+					<h1>Objetivos</h1>
+				</section>
+
+				<section>
+					<h1>Expor uma API unificada para <span class="red">clientes</span></h1>
+					<p>Clientes recebem uma API única que esconde a multitude de
+					serviços que estão envolvidos pra implementar as funcionalidades</p>
+				</section>
+
+				<section>
+					<h1>Compartilhar <span class="orange" >funcionalidades comuns</span> entre serviços</h1>
+					<p>
+						Lógica que pode ser compartilhada entre serviços (como
+						autenticação e autorização) vive no gateway em vez de
+						nos serviços.
+					</p>
+				</section>
+
+				<section>
+					<h1><span class="green">Traduzindo</span> protocolos e fomatos de dados</h1>
+					<p>
+						Sejam eles legado, monolitos ou microserviços, o gateway
+						é capaz de traduzir protocolos e formatos pra que clientes
+						não tenham que entender o que está por trás das chamadas.
+					</p>
+				</section>
+
+				<section>
+					<h1>Esconder <span class="blue">detalhes de implementação</span> </h1>
+					<p>
+						Matou o monolito ou tem um novo microserviço que está
+						tomando um pedaço do monolito? O gateway esconde o detalhe e
+						clientes continuam funcionando como se nada tivesse mudado.
+					</p>
+				</section>
+
+				<section>
+					<h1>Funcionalidades <span class="orange">comuns</span></h1>
+					<ul>
+						<li>Rate limiting</li>
+						<li><span class="blue">Load balancing</span></li>
+						<li>Tracing</li>
+						<li><span class="green">Service discovery</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Muitos em vez de um</h1>
+					<p>
+						<span class="red">Backends for frontends (BFFs)</span> podem ser utilizados atrás de
+						um gateway pra prover visões diferentes de uma mesma API.
+					</p>
+				</section>
+
+				<section>
+					<h1><span class="blue">GraphQL</span></h1>
+					<p>
+						Você pode construir o seu API gateway como um servidor
+						GraphQL e utilizar ele como ponto de entrada pra todos
+						os seus clientes.
+					</p>
+				</section>
+
+				<section>
+					<h1>Como fazemos na <span class="blue">DigitalOcean</span>?</h1>
+				</section>
+
+				<section>
+					<h1>3 monolitos <span class="red">Rails</span></h1>
+					<p>
+						Uma gem que contém código compartilhado é usada nos 3 projetos.
+					</p>
+				</section>
+
+				<section>
+					<h1>Julho, 2016</h1>
+					<p>Projeto do <span class="blue">Edge Gateway</span> começa</p>
+				</section>
+
+				<section>
+					<h1>Outubro, 2016</h1>
+					<p>Começa a servir uma parte to tráfego de <span class="green">produção</span></p>
+				</section>
+
+				<section>
+					<h1>Dezembro, 2016</h1>
+					<p><span class="blue">Primeiro</span> microserviço integrado</p>
+				</section>
+
+				<section>
+					<h1>O que é ele?</h1>
+					<ul>
+						<li>Construído <span class="green">internamente</span> na DigitalOcean</li>
+						<li>Escrito em Golang</li>
+						<li>Implementa <span class="blue">funcionalidades comuns</span> disponíveis nos monolitos</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Monolitos e Microserviços</h1>
+					<p>
+						<span class="green">Microserviços</span> estão trazendo novas funcionalidades e também migrando pedaços dos <span class="red">monolitos</span>.
+					</p>
+				</section>
+
+				<section>
+					<h1>Funções</h1>
+					<p>
+						<span class="red">Autenticação</span>, <span class="green">rate limiting</span>, feature flipping e outros acontecem no gateway.
+						Serviços recebem requisições com todos os metadados do cliente adicionados e então executam as operações.
+					</p>
+				</section>
+
+				<section>
+					<h1><span class="blue">Serviços</span> não falam com o <span class="orange">gateway</span></h1>
+					<p>
+						Aplicações se registram no serviço de rotas e o gateway
+						usa os dados desse serviço pra decidir pra onde cada requisição deve ir.
+					</p>
+				</section>
+
+				<section>
+					<h1>Gateway então <span class="blue">envia</span> as requisições que recebe para serviços</h1>
+					<p>Toda a comunicação é feita via HTTP, serviços recebem
+					metadados através de headers HTTP</p>
+				</section>
+
+				<section>
+					<h1>Menos <span class="orange">dependência</span></h1>
+					<p>
+						Serviços em qualquer linguagem são capazes de ler
+						os headers HTTP e usar os dados deles. Eles não dependem
+						diretamente em qualquer pedaço do gateway ou em protocolos
+						especiais.
+					</p>
+				</section>
+
+				<section>
+					<h1>Atualizar o <span class="orange">Gateway</span> ou <span class="green">aplicações</span> não afetam um ao outro</h1>
+				</section>
+
+				<section>
+					<h1>Agregadores</h1>
+					<p>
+						Serviços atrás do gateway funcionam como <span class="orange">agregadores</span> e
+						<span class="green">tradutores</span>.
+					</p>
+				</section>
+
+				<section>
+					<h1>O que fez <span class="green">mais</span> diferença na implantação?</h1>
+					<ul>
+						<li>Documentação</li>
+						<li>Defaults úteis pra (quase) tudo</li>
+						<li>Métricas e dashboards automáticos</li>
+						<li>Self service</li>
+						<li>Confiabilidade</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Onde <span class="red">falhamos</span>?</h1>
+					<ul>
+						<li>Demorou pra fornecer os mesmos serviços compartilhados do monolito</li>
+						<li>Mais comunicação com equipes que estavam migrando</li>
+						<li>Equipes que não tinham muita experiência em Golang tiveram mais dificuldade na hora de escrever seus serviços</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Será que os <span class="orange">monolitos</span> vão morrer um dia?</h1>
+				</section>
+
+				<section>
+					<h1>Obrigado!</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				],
+				slideNumber: true,
+			});
+		</script>
+	</body>
+</html>
